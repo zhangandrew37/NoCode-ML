@@ -25,15 +25,13 @@ from sklearn.metrics import accuracy_score
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-st.set_page_config(page_title='Machine Learning App',
-    layout='wide')
 
 #---------------------------------#
 # User Authentication Section
 
 # DB Management
 import sqlite3
-conn = sqlite3.connect('data.db')
+conn = sqlite3.connect('data.db', check_same_thread=False)
 c = conn.cursor()
 
 def create_usertable():
@@ -241,7 +239,6 @@ def app():
         build_model()
 
 #---------------------------------#
-load_view() # init
 
 # hide_streamlit_style = """
 #             <style>

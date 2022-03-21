@@ -1,6 +1,6 @@
 NAVBAR_PATHS = {
     'HOME':'home',
-    'PROJECT SETUP': 'project setup',
+    'PROJECT SETUP': 'setup',
     'ANALYSIS': 'analysis'
 }
 
