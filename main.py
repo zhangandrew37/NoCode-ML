@@ -1,6 +1,6 @@
 import streamlit as st
 import utils as utl
-from views import home,projectsetup,analysis,modelsetup,training,prediction,modelreport,options,configuration
+from views import home,projectsetup,data,modelsetup,training,prediction,modelreport,options,configuration
 
 st.set_page_config(layout="wide", page_title='W & WW Optimization ML Modeling')
 st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -13,8 +13,8 @@ def navigation():
         home.load_view()
     elif route == "projectsetup":
         projectsetup.load_view()
-    elif route == "analysis":
-        analysis.load_view()
+    elif route == "data":
+        data.load_view()
     elif route == "modelsetup":
         modelsetup.load_view()
     elif route == "training":

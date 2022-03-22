@@ -1,7 +1,7 @@
 NAVBAR_PATHS = {
     'HOME':'home',
     'PROJECT SETUP': 'projectsetup',
-    'ANALYSIS': 'analysis',
+    'DATA': 'data',
     'MODEL SETUP': 'modelsetup',
     'TRAINING': 'training',
     'PREDICTION': 'prediction',
