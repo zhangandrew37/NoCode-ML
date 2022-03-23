@@ -1,5 +1,6 @@
 import streamlit as st
 from views import home, data
+import main
 import utils as utl
 
 def load_view():   
@@ -20,6 +21,6 @@ def load_view():
             empty2.empty()
             empty3.empty()
             empty4.empty()
-            data.load_view()
-            submit = st.form_submit_button(label= "Save Changes")
+            data.load_view_external()
+            submit = st.form_submit_button(label= "Cancel")
         
