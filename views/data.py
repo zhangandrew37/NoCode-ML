@@ -1,7 +1,33 @@
 import streamlit as st
 import pickle as pkle
 import os.path
-    
+import pandas as pd
+import seaborn as sb
+from dataprep.eda import create_report
+
+example_data = open("Data-AI-1.csv")
+df = pd.read_csv(example_data)
+
+def generate_report():
+        left, right = st.columns(2)
+        with left:
+            if st.button('View detailed report in new tab'):
+                report = create_report(df)
+                report.show_browser()
+        with right:
+            if st.button('Download detailed report'):
+                    report = create_report(df)
+                    report.save('Report')
+                    report.show_browser()
+
+def generate_plot():
+    numeric_columns = df.select_dtypes(['float', 'int']).columns
+    st.sidebar.subheader("Scatter Plot Setup")
+    select_box1 = st.sidebar.selectbox(label='X axis', options=numeric_columns)
+    select_box2 = st.sidebar.selectbox(label='Y axis', options=numeric_columns)
+    g = sb.relplot(x=select_box1, y=select_box2, data=df, height=6, aspect=11.7/8.27)
+    st.pyplot()
+
 def load_view():
     st.title('Data Pre-processing')
 
@@ -38,6 +64,7 @@ def load_view():
 
     # pickle the index associated with the value, to keep track if the radio button has been used
     pkle.dump(new_choice.index(choice), open('next.p', 'wb'))
+
     if choice == 'Customize Input Fields':
         with st.form(key = "create", clear_on_submit=False):
             st.subheader("Customize Input Fields")
@@ -45,7 +72,11 @@ def load_view():
             save = st.form_submit_button("Save Changes")
         
     elif choice == 'Quality Check':
-        st.subheader("Data Quality Check")
+       data_choice = st.selectbox("Data Quality Check", ["Data Preview", "Check Null Data", "Statistical Analysis"])
+       if data_choice == 'Data Preview':
+           generate_report()
+           generate_plot()
+           st.write(df)
 
     elif choice == 'Data Manipulation':
         st.subheader('Data Manipulation')
@@ -54,7 +85,7 @@ def load_view():
         
 def load_view_external():
     st.title('Data Pre-processing')
-
+    
     # create a button in the side bar that will move to the next page/radio button choice
     next = st.sidebar.button('Next on list')
 
