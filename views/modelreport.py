@@ -3,12 +3,16 @@ from datetime import date
 import math
 import random
 import matplotlib.pyplot as plt
+import pandas as pd
+
+example_data = open("Data-AI-1.csv")
+df = pd.read_csv(example_data)
+params = df.select_dtypes(['float', 'int']).columns
 
 def load_view():    
     st.title('Dashboard')
 
     algorithm = st.sidebar.selectbox('Select an Algorithm', ['Random Forest', 'Linear Regression', 'Logistic Regression', 'Decision Tree', 'SVM', 'Native Bayes', 'KNN', 'K-means'])
-    st.sidebar.checkbox("Show Data Analysis by Algorithm", True, key="1")
 
     col1, col2, col3 = st.columns(3)
     col1.text("Model Score")
@@ -19,13 +23,12 @@ def load_view():
     col3.text("Last Updated")
     col3.info(today)
 
-    parameter = st.sidebar.selectbox('Select a Parameter', ["1"])
-    st.sidebar.checkbox("Show Data Analysis by Parameter", True, key="2")
+    parameter = st.sidebar.selectbox('Select an Input Parameter', params)
 
     c1, c2 = st.columns(2)
 
     with c1:
-        st.subheader("Coagulent Cost")
+        st.subheader(parameter)
         st.text("Current")
         st.info("$70/MG")
         st.text("Otpimized")

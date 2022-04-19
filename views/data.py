@@ -40,7 +40,7 @@ def generate_plot():
     st.sidebar.subheader("Scatter Plot Setup")
     select_box1 = st.sidebar.selectbox(label='X axis', options=numeric_columns)
     select_box2 = st.sidebar.selectbox(label='Y axis', options=numeric_columns)
-    g = sb.relplot(x=select_box1, y=select_box2, data=df, height=6, aspect=11.7/8.27)
+    g = sb.relplot(x=select_box1, y=select_box2, data=df, height=5, aspect=15.7/8.27)
     st.pyplot()
 
 def load_view():
@@ -83,7 +83,8 @@ def load_view():
     if choice == 'Customize Input Fields':
         with st.form(key = "create", clear_on_submit=False):
             st.subheader("Customize Input Fields")
-            choices = st.multiselect("Options", ["1", "2"])
+            numeric_columns = df.select_dtypes(['float', 'int']).columns
+            choices = st.multiselect("Options", options=numeric_columns)
             save = st.form_submit_button("Save Changes")
         
     elif choice == 'Quality Check':
@@ -105,7 +106,7 @@ def load_view():
                 parameter_oob_score = st.sidebar.select_slider('Whether to use out-of-bag samples to estimate the R^2 on unseen data (oob_score)', options=[False, True])
                 parameter_n_jobs = st.sidebar.select_slider('Number of jobs to run in parallel (n_jobs)', options=[1, -1])
 
-            X = df.iloc[:,:-1] # Using all column except for the last column as X
+            X = df.iloc[:,:-1] # Using all columns except for the last column as X
             Y = df.iloc[:,-1] # Selecting the last column as Y
 
             # Data splitting
@@ -158,6 +159,7 @@ def load_view():
 
     elif choice == 'Data Manipulation':
         st.subheader('Data Manipulation')
+        st.text('(Coming Soon)')
         st.write(df)
     elif choice == 'Data Visualization':
         st.subheader('Data Visualization')

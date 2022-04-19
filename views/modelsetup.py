@@ -54,7 +54,7 @@ def load_view():
         st.write('Y variable')
         #st.info(Y.name)
     elif choice == "Data Scaling":
-        st.write("Coming Soon")
+        st.text("(Coming Soon)")
     elif choice == "ML Algorithms":
         algorithm = st.radio("Choose an algorithm for the model:", ('Random Forest', 'Linear Regression', 'Logistic Regression', 'Decision Tree', 'SVM', 'Native Bayes', 'KNN', 'K-means'))
         st.write("You chose: " + algorithm)
