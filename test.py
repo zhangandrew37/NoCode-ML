@@ -1,5 +1,4 @@
 import streamlit as st
-from views import home, data
 import main
 import utils as utl
 
@@ -9,11 +8,10 @@ def load_view():
     with st.form(key = "create", clear_on_submit=False):
         empty1 = st.empty()
         empty2 = st.empty()
-        empty3 = st.empty()
         empty4 = st.empty()
         name = empty1.text_input(label = "Enter the model name")
         type = empty2.selectbox("Type of ML modeling (Algorithm)", ["Random Forest Regressor"])
-        df = empty3.file_uploader("Upload your data (CSV)")
+        datafile = load_df()
         submit = empty4.form_submit_button(label= "Create Project")
         if (submit):
             empty0.empty()
@@ -21,5 +19,13 @@ def load_view():
             empty2.empty()
             empty3.empty()
             empty4.empty()
-            data.load_view_external()
-            submit = st.form_submit_button(label= "Cancel")        
+            submit = st.form_submit_button(label= "Cancel")
+    return df
+
+def load_df():
+    empty3 = st.empty()
+    df = empty3.file_uploader("Upload your data (CSV)")
+    return df
+
+df = load_df()
+        
