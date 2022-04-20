@@ -9,9 +9,8 @@ example_data = open("Data-AI-1.csv")
 df = pd.read_csv(example_data)
 params = df.select_dtypes(['float', 'int']).columns
 
-def load_view():    
+def load_view():
     st.title('Dashboard')
-
     algorithm = st.sidebar.selectbox('Select an Algorithm', ['Random Forest', 'Linear Regression', 'Logistic Regression', 'Decision Tree', 'SVM', 'Native Bayes', 'KNN', 'K-means'])
 
     col1, col2, col3 = st.columns(3)
@@ -29,29 +28,21 @@ def load_view():
 
     with c1:
         st.subheader(parameter)
-        st.text("Current")
+        st.text("Maximum")
         st.info("$70/MG")
-        st.text("Otpimized")
+        st.text("Minimum")
         st.info("$58/MG")
-        st.text("Savings/month")
+        st.text("Mean")
         st.info("$3600")
+        st.text("Count")
+        st.info("1")
 
     with c2:
-        # create random data
-        no_of_balls = 25
-        x = [random.triangular() for i in range(no_of_balls)]
-        y = [random.gauss(0.5, 0.25) for i in range(no_of_balls)]
-        colors = [random.randint(1, 4) for i in range(no_of_balls)]
-        areas = [math.pi * random.randint(5, 15)**2 for i in range(no_of_balls)]
-        # draw the plot
-        plt.figure()
-        plt.scatter(x, y, s=areas, c=colors, alpha=0.85)
-        plt.axis([0.0, 1.0, 0.0, 1.0])
-        plt.xlabel("X")
-        plt.ylabel("Y")
-        plt.show()
-        st.pyplot()
+        st.bar_chart(df[parameter])
+        st.line_chart(df[parameter])
+        st.plotly_chart(df[parameter])
+    #frequency
 
 
-    st.subheader('Model Parameters')
+    ##st.subheader('Model Parameters')
     #st.write(rf.get_params())

@@ -237,13 +237,3 @@ def app():
         st.write("Wastewater treatment plant data")
         st.write(df)
         build_model()
-
-#---------------------------------#
-
-# hide_streamlit_style = """
-#             <style>
-#             #MainMenu {visibility: hidden;}
-#             footer {visibility: hidden;}
-#             </style>
-#             """
-# st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
