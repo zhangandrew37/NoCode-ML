@@ -1,8 +1,4 @@
-# streamlit-navbar-flaskless
-A navbar component for streamlit.
-
-A navbar component which does not require any external dependencies to be used.  
-![navbar](https://user-images.githubusercontent.com/44586585/158054199-95576e41-5541-43ff-b16e-2988172104e1.gif)
+# w-ww
 
 Tested on `streamlit 1.7.0`  
 Written in `python 3.8` (Using 3.10 you can use switch case if you preffer).
@@ -11,10 +7,11 @@ Written in `python 3.8` (Using 3.10 you can use switch case if you preffer).
 `views`: contains views which are rendered on navigation.  
 `main`: the root, contains navigation function, some settings and activation of navigation.  
 `utils`: contains some utilities & navbar component.  
-`PATHS`: contains paths for navbar & settings.  
+`PATHS`: contains paths for navbar & settings.
 
 `How it works?`
 There are 2 things injected into the page.
+
 1. The component itself, the navbar with the icon & drop down.
 2. The JS which is injected via `from streamlit.components.v1 import html` which allows to inject an iframe with JS.
 
@@ -38,7 +35,7 @@ def navbar_component():
             ....
     '''
     st.markdown(component, unsafe_allow_html=True)
-    
+
     js = '''
     <script>
     ....
