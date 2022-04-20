@@ -5,7 +5,7 @@ NAVBAR_PATHS = {
     'MODEL SETUP': 'modelsetup',
     'TRAINING': 'training',
     'PREDICTION': 'prediction',
-    'MODEL REPORT': 'modelreport'
+    'DASHBOARD': 'modelreport'
 }
 
 SETTINGS = {

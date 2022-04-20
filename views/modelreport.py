@@ -29,18 +29,17 @@ def load_view():
     with c1:
         st.subheader(parameter)
         st.text("Maximum")
-        st.info("$70/MG")
+        st.info(df[parameter].max())
         st.text("Minimum")
-        st.info("$58/MG")
+        st.info(df[parameter].min())
         st.text("Mean")
-        st.info("$3600")
+        st.info(df[parameter].mean())
         st.text("Count")
-        st.info("1")
+        st.info(df[parameter].count())
 
     with c2:
         st.bar_chart(df[parameter])
         st.line_chart(df[parameter])
-        st.plotly_chart(df[parameter])
     #frequency
 
 
