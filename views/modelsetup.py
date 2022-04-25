@@ -38,7 +38,7 @@ def load_view():
         parameter_oob_score = st.sidebar.select_slider('Whether to use out-of-bag samples to estimate the R^2 on unseen data (oob_score)', options=[False, True])
         parameter_n_jobs = st.sidebar.select_slider('Number of jobs to run in parallel (n_jobs)', options=[1, -1])
 
-    choice = st.selectbox("Select setup option", ["Split Data", "Data Scaling", "ML Algorithms", "ML Accuracy Metrics"])
+    choice = st.selectbox("Select setup option", ["Split Data", "Data Scaling", "ML Algorithms"])
 
     if choice == "Split Data":
         split_size = st.slider('Data Split Ratio (% for Training Set)', 10, 90, 80, 5)
@@ -62,7 +62,5 @@ def load_view():
     elif choice == "ML Algorithms":
         algorithm = st.radio("Choose an algorithm for the model:", ('Random Forest', 'Linear Regression', 'Logistic Regression', 'Decision Tree', 'SVM', 'Naïve Bayes', 'KNN', 'K-means'))
         st.write("You chose: " + algorithm)
-    elif choice == "ML Accuracy Metrics":
-        st.write("h")
 
     

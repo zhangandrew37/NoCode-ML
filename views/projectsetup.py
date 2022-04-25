@@ -22,4 +22,5 @@ def load_view():
             empty3.empty()
             empty4.empty()
             data.load_view_external()
+            st.write("If the data is not showing up or if you encounter other issues, please use the navbar at the top to navigate through the app.")
             submit = st.form_submit_button(label= "Cancel")        
