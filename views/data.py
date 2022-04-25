@@ -86,6 +86,7 @@ def load_view():
             numeric_columns = df.select_dtypes(['float', 'int']).columns
             choices = st.multiselect("Options", options=numeric_columns)
             save = st.form_submit_button("Save Changes")
+            st.progress(2)
         
     elif choice == 'Quality Check':
        data_choice = st.selectbox("Data Quality Check", ["Data Preview", "Check Null Data", "Statistical Analysis"])
@@ -153,20 +154,24 @@ def load_view():
             for index, row in nulls.iterrows():
                 st.markdown(index)
                 st.code(row[0])
+
        elif data_choice == 'Data Preview':
            generate_report()
            st.write(df)
+
+       st.progress(3)
 
     elif choice == 'Data Manipulation':
         st.subheader('Data Manipulation')
         st.text('(Coming Soon)')
         st.write(df)
+        st.progress(4)
     elif choice == 'Data Visualization':
         st.subheader('Data Visualization')
         generate_report()
         generate_plot()
+        st.progress(5)
 
-    st.progress(1)
         
 def load_view_external():
     st.title('Data Pre-processing')

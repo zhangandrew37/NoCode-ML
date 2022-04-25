@@ -12,7 +12,7 @@ def load_view():
         empty3 = st.empty()
         empty4 = st.empty()
         name = empty1.text_input(label = "Enter the model name")
-        type = empty2.selectbox("Type of ML modeling (Algorithm)", ('Random Forest', 'Linear Regression', 'Logistic Regression', 'Decision Tree', 'SVM', 'Native Bayes', 'KNN', 'K-means'))
+        type = empty2.selectbox("Type of ML modeling", ('Regression', 'Classification'))
         df = empty3.file_uploader("Upload your data (CSV)")
         submit = empty4.form_submit_button(label= "Create Project")
         if (submit):

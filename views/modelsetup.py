@@ -41,22 +41,26 @@ def load_view():
     choice = st.selectbox("Select setup option", ["Split Data", "Data Scaling", "ML Algorithms", "ML Accuracy Metrics"])
 
     if choice == "Split Data":
-        size_split = st.slider('Data Split Ratio (% for Training Set)', 10, 90, 80, 5)
+        split_size = st.slider('Data Split Ratio (% for Training Set)', 10, 90, 80, 5)
         st.markdown('**Data splits**')
+        X = df.iloc[:,:-1] # Using all column except for the last column as X
+        Y = df.iloc[:,-1] # Selecting the last column as Y
+        # Data splitting
+        X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=(100-split_size)/100)
         st.write('Training set')
-        # st.info(X_train.shape) 
+        st.info(X_train.shape) 
         st.write('Test set')
-        #st.info(X_test.shape)
+        st.info(X_test.shape)
 
         st.markdown('**Variable details**:')
         st.write('X variable')
-        #st.info(list(X.columns))
+        st.info(list(X.columns))
         st.write('Y variable')
-        #st.info(Y.name)
+        st.info(Y.name)
     elif choice == "Data Scaling":
         st.text("(Coming Soon)")
     elif choice == "ML Algorithms":
-        algorithm = st.radio("Choose an algorithm for the model:", ('Random Forest', 'Linear Regression', 'Logistic Regression', 'Decision Tree', 'SVM', 'Native Bayes', 'KNN', 'K-means'))
+        algorithm = st.radio("Choose an algorithm for the model:", ('Random Forest', 'Linear Regression', 'Logistic Regression', 'Decision Tree', 'SVM', 'Naïve Bayes', 'KNN', 'K-means'))
         st.write("You chose: " + algorithm)
     elif choice == "ML Accuracy Metrics":
         st.write("h")

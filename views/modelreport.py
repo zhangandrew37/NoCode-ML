@@ -11,7 +11,7 @@ params = df.select_dtypes(['float', 'int']).columns
 
 def load_view():
     st.title('Dashboard')
-    algorithm = st.sidebar.selectbox('Select an Algorithm', ['Random Forest', 'Linear Regression', 'Logistic Regression', 'Decision Tree', 'SVM', 'Native Bayes', 'KNN', 'K-means'])
+    algorithm = st.sidebar.selectbox('Select an Algorithm', ['Random Forest', 'Linear Regression', 'Logistic Regression', 'Decision Tree', 'SVM', 'Naïve Bayes', 'KNN', 'K-means'])
 
     col1, col2, col3 = st.columns(3)
     col1.text("Model Score")
