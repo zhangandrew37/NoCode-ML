@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 import seaborn as sb
 import base64
-import jinja2 as j2
 from dataprep.eda import create_report
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, RandomForestRegressor
 from sklearn.svm  import SVC, LinearSVC
@@ -224,11 +223,11 @@ def app():
         example_data = open("Data-AI-1.csv")
         df = pd.read_csv(example_data)
         st.markdown('*Sample dataset provided below.*')
-        temp_df = pd.DataFrame(df)
-        csv = temp_df.to_csv(index=False)
-        b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
-        href = f'<a href="data:file/csv;base64,{b64}">Download sample CSV File</a> (right-click and save as &lt;file_name&gt;.csv)'
-        st.markdown(href, unsafe_allow_html=True)
+        # temp_df = pd.DataFrame(df)
+        # csv = temp_df.to_csv(index=False)
+        # b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
+        # href = f'<a href="data:file/csv;base64,{b64}">Download sample CSV File</a> (right-click and save as &lt;file_name&gt;.csv)'
+        # st.markdown(href, unsafe_allow_html=True)
 
         generate_report()
         generate_plot()
