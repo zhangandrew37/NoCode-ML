@@ -36,9 +36,6 @@ def load_view():
     with col2:
         img = Image.open("assets/images/lazyplot.png")
         st.image(img, width=800)
-    #example_data = open("Data-AI-1.csv")
-    #df = pd.read_csv(example_data)
-    #st.dataframe(df.style.highlight_max(axis=0))
 
 # temporarily use image while finding fixes for XGBoost on M1 Mac
 
