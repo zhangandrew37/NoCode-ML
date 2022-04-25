@@ -4,21 +4,10 @@ import os.path
 import pandas as pd
 import seaborn as sb
 from dataprep.eda import create_report
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, RandomForestRegressor
-from sklearn.svm  import SVC, LinearSVC
-from sklearn import svm
-from sklearn.neural_network import MLPClassifier
-from sklearn.linear_model import SGDClassifier
-from sklearn.metrics import confusion_matrix, classification_report, mean_squared_error, r2_score
-from sklearn.preprocessing import StandardScaler, LabelEncoder
-from sklearn.model_selection import train_test_split, KFold, GridSearchCV, cross_val_score, StratifiedKFold
-from sklearn.linear_model import LogisticRegression 
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import AdaBoostClassifier
-from sklearn.datasets import make_classification
-from sklearn.naive_bayes import GaussianNB
-from sklearn.metrics import accuracy_score
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.model_selection import train_test_split
+
 
 example_data = open("Data-AI-1.csv")
 df = pd.read_csv(example_data)
@@ -87,10 +76,10 @@ def load_view():
             choices = st.multiselect("Options", options=numeric_columns)
             save = st.form_submit_button("Save Changes")
             st.progress(2)
-        
+
     elif choice == 'Quality Check':
-       data_choice = st.selectbox("Data Quality Check", ["Data Preview", "Check Null Data", "Statistical Analysis"])
-       if data_choice == 'Statistical Analysis':
+        data_choice = st.selectbox("Data Quality Check", ["Data Preview", "Check Null Data", "Statistical Analysis"])
+        if data_choice == 'Statistical Analysis':
             with st.sidebar.header('Set Parameters'):
                 split_size = st.sidebar.slider('Data split ratio (% for Training Set)', 10, 90, 80, 5)
 
@@ -122,7 +111,7 @@ def load_view():
             bootstrap=parameter_bootstrap,
             oob_score=parameter_oob_score,
             n_jobs=parameter_n_jobs)
-        
+
             rf.fit(X_train, Y_train)
             score = rf.score(X_train, Y_train)
             st.write('Prediction Performance Score:')
@@ -149,17 +138,17 @@ def load_view():
             st.subheader('2. Model Parameters')
             st.write(rf.get_params())
 
-       elif data_choice == 'Check Null Data':
+        elif data_choice == 'Check Null Data':
             nulls = df.isnull().sum().to_frame()
             for index, row in nulls.iterrows():
                 st.markdown(index)
                 st.code(row[0])
 
-       elif data_choice == 'Data Preview':
-           generate_report()
-           st.write(df)
+        elif data_choice == 'Data Preview':
+            generate_report()
+            st.write(df)
 
-       st.progress(3)
+        st.progress(3)
 
     elif choice == 'Data Manipulation':
         st.subheader('Data Manipulation')
@@ -172,10 +161,10 @@ def load_view():
         generate_plot()
         st.progress(5)
 
-        
+
 def load_view_external():
     st.title('Data Pre-processing')
-    
+
     # create a button in the side bar that will move to the next page/radio button choice
     next = st.sidebar.button('Next on list')
 
@@ -212,7 +201,7 @@ def load_view_external():
     if choice == 'Customize Input Fields':
         st.subheader("Customize Input Fields")
         choices = st.multiselect("Options", ["1", "2"])
-        
+
     elif choice == 'Quality Check':
         st.write('Quality Check')
     elif choice == 'Data Manipulation':

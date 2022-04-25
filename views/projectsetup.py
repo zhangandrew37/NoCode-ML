@@ -1,10 +1,9 @@
 import streamlit as st
-from views import home, data
-import main
-import utils as utl
+from views import data
 
-def load_view():   
-    empty0 = st.empty() 
+
+def load_view():
+    empty0 = st.empty()
     empty0.title('Create an ML project')
     with st.form(key = "create", clear_on_submit=False):
         empty1 = st.empty()
@@ -23,4 +22,4 @@ def load_view():
             empty4.empty()
             data.load_view_external()
             st.write("If the data is not showing up or if you encounter other issues, please use the navbar at the top to navigate through the app.")
-            submit = st.form_submit_button(label= "Cancel")        
+            submit = st.form_submit_button(label= "Cancel")

@@ -4,7 +4,7 @@ import pandas as pd
 example_data = open("Data-AI-1.csv")
 df = pd.read_csv(example_data)
 dict = {}
-def load_view():   
+def load_view():
     st.title('Prediction')
     inputs = df.select_dtypes(['float', 'int']).columns
     with st.form(key = "create", clear_on_submit=False):

@@ -1,24 +1,11 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 import seaborn as sb
 import base64
 from dataprep.eda import create_report
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, RandomForestRegressor
-from sklearn.svm  import SVC, LinearSVC
-from sklearn import svm
-from sklearn.neural_network import MLPClassifier
-from sklearn.linear_model import SGDClassifier
-from sklearn.metrics import confusion_matrix, classification_report, mean_squared_error, r2_score
-from sklearn.preprocessing import StandardScaler, LabelEncoder
-from sklearn.model_selection import train_test_split, KFold, GridSearchCV, cross_val_score, StratifiedKFold
-from sklearn.linear_model import LogisticRegression 
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import AdaBoostClassifier
-from sklearn.datasets import make_classification
-from sklearn.naive_bayes import GaussianNB
-from sklearn.metrics import accuracy_score
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.model_selection import train_test_split
 
 # more algorithms to be implemented later
 
@@ -48,7 +35,7 @@ def load_view():
     menu = ["Home", "Login", "Sign Up"]
     choice = st.sidebar.selectbox("Menu", menu)
 
-    if choice == "Home": 
+    if choice == "Home":
         app()
 
     elif choice == "Login":
@@ -106,7 +93,7 @@ def app():
     with st.sidebar.header('1. Upload your CSV data'):
         uploaded_file = st.sidebar.file_uploader("Upload your input CSV file", type=["csv"])
         st.sidebar.markdown("""
-    [Example CSV input file](https://raw.githubusercontent.com/zhangandrew37/ML-web-app/main/Data-AI-1.csv?token=ANATUZW67F4KGSLYWO73LMTBFBL6K) 
+    [Example CSV input file](https://raw.githubusercontent.com/zhangandrew37/ML-web-app/main/Data-AI-1.csv?token=ANATUZW67F4KGSLYWO73LMTBFBL6K)
     """)
 
     # Sidebar - Specify parameter settings
@@ -137,7 +124,7 @@ def app():
 
         # Data splitting
         X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=(100-split_size)/100)
-        
+
         st.markdown('**1.2. Data splits**')
         st.write('Training set')
         st.info(X_train.shape)
@@ -159,7 +146,7 @@ def app():
             bootstrap=parameter_bootstrap,
             oob_score=parameter_oob_score,
             n_jobs=parameter_n_jobs)
-        
+
         rf.fit(X_train, Y_train)
         score = rf.score(X_train, Y_train)
         st.write('Prediction Performance Score:')
@@ -207,7 +194,7 @@ def app():
         st.pyplot()
 
     # Displays the dataset
-    st.subheader('1. Dataset')   
+    st.subheader('1. Dataset')
 
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
