@@ -1,21 +1,7 @@
 import streamlit as st
 import pandas as pd
-import seaborn as sb
-from dataprep.eda import create_report
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, RandomForestRegressor
-from sklearn.svm  import SVC, LinearSVC
-from sklearn import svm
-from sklearn.neural_network import MLPClassifier
-from sklearn.linear_model import SGDClassifier
-from sklearn.metrics import confusion_matrix, classification_report, mean_squared_error, r2_score
-from sklearn.preprocessing import StandardScaler, LabelEncoder
-from sklearn.model_selection import train_test_split, KFold, GridSearchCV, cross_val_score, StratifiedKFold
-from sklearn.linear_model import LogisticRegression 
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import AdaBoostClassifier
-from sklearn.datasets import make_classification
-from sklearn.naive_bayes import GaussianNB
+from sklearn.model_selection import train_test_split
+
 
 def load_view():
     st.title('Model Setup')
@@ -48,7 +34,7 @@ def load_view():
         # Data splitting
         X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=(100-split_size)/100)
         st.write('Training set')
-        st.info(X_train.shape) 
+        st.info(X_train.shape)
         st.write('Test set')
         st.info(X_test.shape)
 
@@ -63,4 +49,3 @@ def load_view():
         algorithm = st.radio("Choose an algorithm for the model:", ('Random Forest', 'Linear Regression', 'Logistic Regression', 'Decision Tree', 'SVM', 'Naïve Bayes', 'KNN', 'K-means'))
         st.write("You chose: " + algorithm)
 
-    

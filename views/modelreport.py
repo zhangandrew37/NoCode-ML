@@ -1,7 +1,5 @@
 import streamlit as st
 from datetime import date
-import math
-import random
 import pandas as pd
 
 example_data = open("Data-AI-1.csv")

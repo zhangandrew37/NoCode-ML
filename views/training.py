@@ -1,8 +1,8 @@
 import streamlit as st
-import pandas as pd
 from PIL import Image
 
-def load_view():    
+
+def load_view():
     algo_choice = st.selectbox("Algorithm", ['Random Forest', 'Linear Regression', 'Logistic Regression', 'Decision Tree', 'SVM', 'Naïve Bayes', 'KNN', 'K-means'])
     st.title('Training')
     st.markdown("**Training set**")
